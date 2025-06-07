@@ -3,10 +3,7 @@
 #include <cstdint>
 #include <ostream>
 
-using std::ostream;
-using std::uint32_t;
-
-class Vector3D {
+class Vector3D final {
  public:
   Vector3D(void) = default;
 
@@ -48,7 +45,7 @@ class Vector3D {
   float _x = 0.0f, _y = 0.0f, _z = 0.0f;
 };
 
-ostream& operator<<(ostream&, const Vector3D&);
+std::ostream& operator<<(std::ostream&, const Vector3D&);
 
 Vector3D operator+(const Vector3D&, const Vector3D&);
 

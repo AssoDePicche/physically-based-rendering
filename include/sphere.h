@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Geometry.h"
+#include "geometry.h"
 
 class Sphere : public Geometry {
  public:
   Sphere(void) = default;
 
-  Sphere(const Vector3D, const float, shared_ptr<Material>);
+  Sphere(const Vector3D, const float, std::shared_ptr<Material>);
 
   virtual bool collide(const Ray&, const float, const float,
                        Collision&) const override;
@@ -14,5 +14,5 @@ class Sphere : public Geometry {
  private:
   Vector3D _center;
   float _radius;
-  shared_ptr<Material> _material;
+  std::shared_ptr<Material> _material;
 };

@@ -1,4 +1,8 @@
-#include "Graphics.h"
+#include "dielectric.h"
+
+#include "geometry.h"
+#include "math.h"
+#include "ray.h"
 
 Dielectric::Dielectric(const float index_of_refraction)
     : _index_of_refraction(index_of_refraction){};
@@ -12,9 +16,9 @@ bool Dielectric::scatter(const Ray& ray, const Collision& collision,
 
   auto direction = ray.direction().normalize();
 
-  const auto cosine = fmin(dot(-direction, collision.normal()), 1.0f);
+  const auto cosine = std::fmin(dot(-direction, collision.normal()), 1.0f);
 
-  const auto sine = sqrt(1.0f - pow(cosine, 2.0f));
+  const auto sine = std::sqrt(1.0f - std::pow(cosine, 2.0f));
 
   bool cannot_refract = (refraction * sine) > 1.0f;
 
@@ -30,7 +34,7 @@ bool Dielectric::scatter(const Ray& ray, const Collision& collision,
 }
 
 float Dielectric::reflectance(const float cosine, const float recraction) {
-  const auto theta = pow((1.0f - recraction) / (1.0f + recraction), 2.0f);
+  const auto theta = std::pow((1.0f - recraction) / (1.0f + recraction), 2.0f);
 
-  return theta + (1.0f - theta) * pow((1.0f - cosine), 5.0f);
+  return theta + (1.0f - theta) * std::pow((1.0f - cosine), 5.0f);
 }

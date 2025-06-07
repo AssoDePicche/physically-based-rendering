@@ -3,11 +3,8 @@
 #include <memory>
 #include <vector>
 
-#include "Material.h"
-#include "Ray.h"
-
-using std::shared_ptr;
-using std::vector;
+#include "material.h"
+#include "ray.h"
 
 class Collision {
  public:
@@ -19,7 +16,7 @@ class Collision {
 
   float t(void) const;
 
-  shared_ptr<Material> material(void) const;
+  std::shared_ptr<Material> material(void) const;
 
   bool front_face(void) const;
 
@@ -29,7 +26,7 @@ class Collision {
 
   void t(const float);
 
-  void material(shared_ptr<Material> material);
+  void material(std::shared_ptr<Material> material);
 
   void front_face(const bool);
 
@@ -38,7 +35,7 @@ class Collision {
  private:
   Vector3D _position;
   Vector3D _normal;
-  shared_ptr<Material> _material;
+  std::shared_ptr<Material> _material;
   float _t;
   bool _front_face;
 };
@@ -53,15 +50,15 @@ class Scene : public Geometry {
  public:
   Scene(void) = default;
 
-  Scene(const shared_ptr<Geometry>);
+  Scene(const std::shared_ptr<Geometry>);
 
   void clear(void);
 
-  void add(const shared_ptr<Geometry>);
+  void add(const std::shared_ptr<Geometry>);
 
   virtual bool collide(const Ray&, const float, const float,
                        Collision&) const override;
 
  private:
-  vector<shared_ptr<Geometry>> geometries;
+  std::vector<std::shared_ptr<Geometry>> geometries;
 };

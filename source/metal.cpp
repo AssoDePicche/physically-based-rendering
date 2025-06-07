@@ -1,4 +1,7 @@
-#include "Graphics.h"
+#include "metal.h"
+
+#include "geometry.h"
+#include "vector3d.h"
 
 Metal::Metal(const Vector3D& albedo, const float fuzziness)
     : _albedo(albedo), _fuzziness(fuzziness < 1.0f ? fuzziness : 1.0f) {}

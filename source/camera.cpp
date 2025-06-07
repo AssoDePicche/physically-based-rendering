@@ -1,4 +1,6 @@
-#include "Graphics.h"
+#include "camera.h"
+
+#include "math.h"
 
 Camera::Camera(const Vector3D look_from, const Vector3D look_at,
                const Vector3D view_up, const float field_of_view,
@@ -7,7 +9,7 @@ Camera::Camera(const Vector3D look_from, const Vector3D look_at,
     : look_from(look_from) {
   const auto theta = degrees_to_radians(field_of_view);
 
-  const auto viewport_height = 2.0f * tan(theta / 2.0f);
+  const auto viewport_height = 2.0f * std::tan(theta / 2.0f);
 
   const auto viewport_width = aspect_ratio * viewport_height;
 

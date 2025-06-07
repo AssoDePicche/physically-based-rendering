@@ -1,15 +1,18 @@
-#include "Graphics.h"
+#include "color.h"
+
+#include <algorithm>
+#include <cmath>
 
 static uint32_t map_pixel_color(const float pixel, const float scale) {
   const auto MAX_INTENSITY = 256;
 
-  const auto gamma_correction = sqrt(pixel * scale);
+  const auto gamma_correction = std::sqrt(pixel * scale);
 
   return static_cast<uint32_t>(MAX_INTENSITY *
-                               clamp(gamma_correction, 0.0f, 0.999f));
+                               std::clamp(gamma_correction, 0.0f, 0.999f));
 }
 
-void write_color(ostream& out, const Vector3D pixel,
+void write_color(std::ostream& out, const Vector3D pixel,
                  const uint32_t samples_per_pixel) {
   const auto scale = 1.0f / samples_per_pixel;
 

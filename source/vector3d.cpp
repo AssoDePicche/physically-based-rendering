@@ -1,4 +1,6 @@
-#include "Graphics.h"
+#include "vector3d.h"
+
+#include "math.h"
 
 Vector3D::Vector3D(const float x, const float y, const float z)
     : _x(x), _y(y), _z(z) {}
@@ -51,10 +53,10 @@ Vector3D Vector3D::random(const float min, const float max) {
                   random_number(min, max));
 }
 
-ostream& operator<<(ostream& out, const Vector3D& u) {
-  out << u.x() << ' ' << u.y() << ' ' << u.z();
+std::ostream& operator<<(std::ostream& stream, const Vector3D& u) {
+  stream << u.x() << ' ' << u.y() << ' ' << u.z();
 
-  return out;
+  return stream;
 }
 
 Vector3D operator+(const Vector3D& u, const Vector3D& v) {

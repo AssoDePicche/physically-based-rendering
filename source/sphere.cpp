@@ -1,18 +1,20 @@
-#include "Graphics.h"
+#include "sphere.h"
+
+#include <cmath>
 
 Sphere::Sphere(const Vector3D center, const float radius,
-               shared_ptr<Material> material)
+               std::shared_ptr<Material> material)
     : _center(center), _radius(radius), _material(material) {}
 
 bool Sphere::collide(const Ray& ray, const float t_min, const float t_max,
                      Collision& collision) const {
   Vector3D oc = ray.origin() - _center;
 
-  auto a = pow(ray.direction().length(), 2.0f);
+  auto a = std::pow(ray.direction().length(), 2.0f);
 
   auto half_b = dot(oc, ray.direction());
 
-  auto c = pow(oc.length(), 2.0f) - pow(_radius, 2.0f);
+  auto c = std::pow(oc.length(), 2.0f) - std::pow(_radius, 2.0f);
 
   auto discriminant = half_b * half_b - a * c;
 
@@ -20,7 +22,7 @@ bool Sphere::collide(const Ray& ray, const float t_min, const float t_max,
     return false;
   }
 
-  auto square_root_of_discriminant = sqrt(discriminant);
+  auto square_root_of_discriminant = std::sqrt(discriminant);
 
   auto root = (-half_b - square_root_of_discriminant) / a;
 

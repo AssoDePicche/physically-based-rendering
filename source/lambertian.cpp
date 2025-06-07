@@ -1,4 +1,6 @@
-#include "Graphics.h"
+#include "lambertian.h"
+
+#include "geometry.h"
 
 Lambertian::Lambertian(const Vector3D& albedo) : _albedo(albedo) {}
 
