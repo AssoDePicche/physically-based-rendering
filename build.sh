@@ -1,3 +1,3 @@
 #!/bin/bash
 
-cmake -S . -B ./build && cmake --build ./build --config release
+cmake -S . -B ./build && cmake --build ./build -j12 --config release
